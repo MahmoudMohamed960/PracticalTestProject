@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Practical Test</string>
+    <string name="same_day_delivery">Same Day Delivery</string>
+    <string name="title_text">Items</string>
+    <string name="popular_items">Popular Items</string>
+</resources>

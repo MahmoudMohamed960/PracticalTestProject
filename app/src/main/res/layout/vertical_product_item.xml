@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="187dp"
+    >
+
+    <ImageView
+        android:id="@+id/wish_list_icon"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:elevation="2dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/icon_wishlist"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/product_pic"
+        android:layout_width="match_parent"
+        android:layout_height="141dp"
+        android:scaleType="centerCrop"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toTopOf="@id/price_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/same_day_delivery"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:background="@color/transparent_Color"
+        android:fontFamily="@font/encode_sans_condensed_regular"
+        android:gravity="center"
+        android:text="@string/same_day_delivery"
+        android:textColor="@color/white"
+        android:textSize="11sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/product_pic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <LinearLayout
+        android:id="@+id/price_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
+        android:weightSum="2"
+        app:layout_constraintTop_toBottomOf="@+id/same_day_delivery">
+
+        <TextView
+            android:id="@+id/item_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/encode_sans_condensed_medium"
+            android:gravity="start"
+            android:textColor="@color/item_name_color"
+            android:textSize="12sp"
+            tools:text="The florist" />
+
+        <TextView
+            android:id="@+id/price_currency_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/encode_sans_condensed_light"
+            android:gravity="end"
+            android:textColor="@color/price_color"
+            android:textSize="12sp"
+            tools:text="KWD 299.0" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

@@ -1,0 +1,31 @@
+package com.example.practicaltestproject.di
+
+import android.app.Application
+import com.example.practicaltestproject.Home.data.remote.ProductsService
+import com.example.practicaltestproject.Home.domain.ProductsRepository
+import com.example.practicaltestproject.config.remote.RetrofitFactory
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
+
+
+@Module
+@InstallIn(SingletonComponent::class)
+object AppModule {
+
+    @Singleton
+    @Provides
+    fun provideRetrofitFactory(application: Application) = RetrofitFactory(application)
+
+    @Singleton
+    @Provides
+    fun provideProductsService(retrofit: RetrofitFactory) =
+        retrofit.createService(ProductsService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideProductsRepository(productsService: ProductsService) =
+        ProductsRepository(productsService)
+}
