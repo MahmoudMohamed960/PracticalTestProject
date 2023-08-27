@@ -28,20 +28,6 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@mipmap/ic_launcher" />
 
-    <TextView
-        android:id="@+id/same_day_delivery"
-        android:layout_width="match_parent"
-        android:layout_height="25dp"
-        android:background="@color/transparent_Color"
-        android:fontFamily="@font/encode_sans_condensed_regular"
-        android:gravity="center"
-        android:text="@string/same_day_delivery"
-        android:textColor="@color/white"
-        android:textSize="11sp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/product_pic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
 
     <LinearLayout
@@ -51,7 +37,7 @@
         android:orientation="horizontal"
         android:layout_marginTop="5dp"
         android:weightSum="2"
-        app:layout_constraintTop_toBottomOf="@+id/same_day_delivery">
+        app:layout_constraintTop_toBottomOf="@+id/product_pic">
 
         <TextView
             android:id="@+id/item_name"

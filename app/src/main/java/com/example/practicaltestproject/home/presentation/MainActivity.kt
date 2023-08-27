@@ -1,4 +1,4 @@
-package com.example.practicaltestproject.Home.presentation
+package com.example.practicaltestproject.home.presentation
 
 import android.os.Bundle
 import android.widget.Toast
@@ -8,11 +8,10 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.practicaltestproject.Home.data.remote.model.Data
-import com.example.practicaltestproject.Home.data.remote.model.FeaturedItem
 import com.example.practicaltestproject.R
+import com.example.practicaltestproject.databinding.ActivityMainBinding
+import com.example.practicaltestproject.home.data.remote.model.ProductModel
 import com.example.practicaltestproject.utils.MarginItemDecoration
 import com.example.practicaltestproject.utils.Status
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,21 +21,23 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
     private val viewModel: ProductsViewModel by viewModels()
     var keepSplash = true
     override fun onCreate(savedInstanceState: Bundle?) {
-        val splashScreen =installSplashScreen()
+        val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        splashScreen.setKeepOnScreenCondition{
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        splashScreen.setKeepOnScreenCondition {
             keepSplash
         }
         lifecycleScope.launch {
             delay(3000)
-            keepSplash =false
+            keepSplash = false
             getProducts()
         }
-
 
 
     }
@@ -44,15 +45,9 @@ class MainActivity : AppCompatActivity() {
     private fun getProducts() {
         viewModel.response.observe(this, Observer { response ->
             when (response.status) {
+
                 Status.SUCCESS -> {
-                    response.data?.featuredItem?.let { featureList ->
-                        setHorizontalProducts(featureList)
-                    }
-
-                    response.data?.data?.let { data ->
-                        setVerticalProducts(data)
-                    }
-
+                    response.data?.let { setProductsList(it) }
                 }
 
                 Status.LOADING ->
@@ -70,27 +65,19 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-        })    }
+        })
+    }
 
 
-    private fun setVerticalProducts(data: List<Data>) {
-        val verticalProductsList: RecyclerView = findViewById(R.id.vertical_products_list)
+    private fun setProductsList(products: ProductModel) {
+        val verticalProductsList =binding.verticalProductsList
         val gridLayoutManager = GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false)
         verticalProductsList.layoutManager = gridLayoutManager
-        val dataAdapter = DataItemsAdapter(data, this)
+        val dataAdapter = ProductsAdapter(products, this)
         verticalProductsList.adapter = dataAdapter
         verticalProductsList.addItemDecoration(
             MarginItemDecoration(resources.getDimensionPixelSize(R.dimen.margin))
         )
     }
 
-    private fun setHorizontalProducts(featuredItems: List<FeaturedItem>) {
-        val horizontalProductsList: RecyclerView = findViewById(R.id.horizontal_products_list)
-        val layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        horizontalProductsList.layoutManager = layoutManager
-
-        val featuredItemAdapter = FeaturedItemAdapter(featuredItems, this)
-        horizontalProductsList.adapter = featuredItemAdapter
-    }
 }

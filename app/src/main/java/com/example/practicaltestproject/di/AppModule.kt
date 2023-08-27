@@ -1,8 +1,8 @@
 package com.example.practicaltestproject.di
 
 import android.app.Application
-import com.example.practicaltestproject.Home.data.remote.ProductsService
-import com.example.practicaltestproject.Home.domain.ProductsRepository
+import com.example.practicaltestproject.home.data.remote.model.ProductsService
+import com.example.practicaltestproject.home.data.repository.ProductsRepositoryImp
 import com.example.practicaltestproject.config.remote.RetrofitFactory
 import dagger.Module
 import dagger.Provides
@@ -27,5 +27,5 @@ object AppModule {
     @Singleton
     @Provides
     fun provideProductsRepository(productsService: ProductsService) =
-        ProductsRepository(productsService)
+        ProductsRepositoryImp(productsService)
 }

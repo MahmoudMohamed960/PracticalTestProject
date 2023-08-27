@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".Home.presentation.MainActivity">
+    tools:context=".home.presentation.MainActivity">
 
     <include
         android:id="@+id/top_bar"
@@ -26,18 +26,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/top_bar" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/horizontal_products_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/popualr_items"
-        tools:listitem="@layout/horizontal_product_item" />
+
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -47,7 +36,7 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/horizontal_products_list">
+        app:layout_constraintTop_toBottomOf="@+id/popualr_items">
 
         <ImageView
             android:layout_width="7dp"
