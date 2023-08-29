@@ -1,6 +1,6 @@
 package com.example.practicaltestproject.home.data.repository
 
-import com.example.practicaltestproject.home.data.remote.model.ProductsService
+import com.example.practicaltestproject.home.data.remote.ProductsService
 import com.example.practicaltestproject.home.domain.repository.ProductsRepository
 import com.example.practicaltestproject.config.remote.NoConnectivityException
 import com.example.practicaltestproject.utils.Response

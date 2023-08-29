@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.practicaltestproject.R
 import com.example.practicaltestproject.databinding.ActivityMainBinding
 import com.example.practicaltestproject.home.data.remote.model.ProductModel
+import com.example.practicaltestproject.home.presentation.model.ProductItemUiState
+import com.example.practicaltestproject.home.presentation.model.ProductsUiState
 import com.example.practicaltestproject.utils.MarginItemDecoration
 import com.example.practicaltestproject.utils.Status
 import dagger.hilt.android.AndroidEntryPoint
@@ -43,11 +45,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getProducts() {
-        viewModel.response.observe(this, Observer { response ->
+        viewModel.productsUiState.observe(this, Observer { response ->
             when (response.status) {
 
                 Status.SUCCESS -> {
-                    response.data?.let { setProductsList(it) }
+                    response.data?.let { setProductsList(it.productItemUiState) }
                 }
 
                 Status.LOADING ->
@@ -62,14 +64,13 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this, "empty list", Toast.LENGTH_LONG)
                         .show()
 
-
             }
 
         })
     }
 
 
-    private fun setProductsList(products: ProductModel) {
+    private fun setProductsList(products: List<ProductItemUiState>) {
         val verticalProductsList =binding.verticalProductsList
         val gridLayoutManager = GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false)
         verticalProductsList.layoutManager = gridLayoutManager

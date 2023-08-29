@@ -12,9 +12,10 @@ import com.bumptech.glide.Glide
 import com.example.practicaltestproject.R
 import com.example.practicaltestproject.databinding.VerticalProductItemBinding
 import com.example.practicaltestproject.home.data.remote.model.ProductModel
+import com.example.practicaltestproject.home.presentation.model.ProductItemUiState
 
 class ProductsAdapter(
-    val productsList: ProductModel,
+    val productsList: List<ProductItemUiState>,
     val context: Context
 ) :
     RecyclerView.Adapter<ProductsAdapter.ViewHolder>() {
